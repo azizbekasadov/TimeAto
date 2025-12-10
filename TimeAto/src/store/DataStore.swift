@@ -1,3 +1,11 @@
+//
+//  DataStore.swift
+//  TimeAto
+//
+//  Created by Azizbek Asadov on 10.12.2025.
+//
+
+import Foundation
 
 struct DataStore {
     func dataFileURL() -> URL? {
