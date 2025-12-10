@@ -11,17 +11,26 @@ import Foundation
 final class MenuManager: NSObject {
     private let statusMenu: NSMenu
     
-    private var menuIsOpen = false
-    
-    private var tasks = TaskItem.sampleTasksWithStatus
+    private(set) var menuIsOpen = false
     
     private let itemsBeforeTasks = 2
     private let itemsAfterTasks = 6
+    
+    lazy var taskManager = TaskManager()
+    lazy var notifier = Notifier()
     
     init(statusMenu: NSMenu) {
         self.statusMenu = statusMenu
         
         super.init()
+    }
+    
+    func updateMenuItems() {
+        for item in statusMenu.items {
+            if let view = item.view as? TaskView {
+                view.setNeedsDisplay(.infinite)
+            }
+        }
     }
     
     private func clear() {
@@ -39,7 +48,7 @@ final class MenuManager: NSObject {
         var taskCounter = 0
         let itemFrame = NSRect(x: 0, y: 0, width: 270, height: 40)
         
-        for task in tasks {
+        for task in taskManager.tasks {
             let item = NSMenuItem()
             let itemView = TaskView(frame: itemFrame)
             itemView.task = task
