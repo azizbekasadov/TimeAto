@@ -9,6 +9,8 @@ import Cocoa
 
 @main
 final class AppDelegate: NSObject, NSApplicationDelegate {
+    @IBOutlet weak var launchOnLoginMenuItem: NSMenuItem!
+    @IBOutlet private weak var startStopMenuItem: NSMenuItem!
     @IBOutlet private weak var mainMenu: NSMenu!
     
     private var menuManager: MenuManager?
@@ -43,6 +45,45 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             ofSize: NSFont.systemFontSize,
             weight: .regular
         )
+    }
+    
+    func updateMenu(
+        title: String,
+        icon: String,
+        taskIsRunning: Bool
+    ) {
+        statusItem?.button?.title = title
+        statusItem?.button?.image = NSImage(
+            systemSymbolName: icon,
+            accessibilityDescription: title
+        )
+        
+        updateMenuItemTitles(taskIsRunning: taskIsRunning)
+        
+        if menuManager?.menuIsOpen == true {
+            menuManager?.updateMenuItems()
+        }
+    }
+    
+    func updateMenuItemTitles(taskIsRunning: Bool) {
+        if taskIsRunning {
+            startStopMenuItem.title = "Mark Task as Complete"
+        } else {
+            startStopMenuItem.title = "Start Next Task"
+        }
+    }
+    
+    // MARK: - IBActions
+    
+    @IBAction private func startNewTaskAction(_ sender: NSMenuItem) {
+        menuManager?.taskManager.toggleTask()
+    }
+    
+    @IBAction private func editTaskAction(_ sender: NSMenuItem) {
+        
+    }
+    
+    @IBAction private func launchOnLoginAction(_ sender: NSMenuItem) {
     }
 }
 
