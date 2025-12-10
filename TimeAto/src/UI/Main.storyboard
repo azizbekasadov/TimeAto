@@ -24,12 +24,21 @@
                                         <menuItem isSeparatorItem="YES" id="K5M-6k-dDE"/>
                                         <menuItem title="Start New Task" id="JPA-dH-qAg">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="startNewTaskAction:" target="Voe-Tx-rLC" id="MCE-gF-UNz"/>
+                                            </connections>
                                         </menuItem>
                                         <menuItem title="Edit Task..." id="QPN-YS-5iv">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="editTaskAction:" target="Voe-Tx-rLC" id="YrC-bt-YGC"/>
+                                            </connections>
                                         </menuItem>
                                         <menuItem title="Launch On Login" id="Eve-tj-9qO">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="launchOnLoginAction:" target="Voe-Tx-rLC" id="5iS-Ur-JRl"/>
+                                            </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
                                         <menuItem title="Quit TimeAto" id="4sb-4s-VLi">
@@ -49,7 +58,9 @@
                 </application>
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="TimeAto" customModuleProvider="target">
                     <connections>
+                        <outlet property="launchOnLoginMenuItem" destination="Eve-tj-9qO" id="UTn-f2-uoK"/>
                         <outlet property="mainMenu" destination="uQy-DD-JDr" id="dk5-Jr-q5d"/>
+                        <outlet property="startStopMenuItem" destination="JPA-dH-qAg" id="YJ9-7g-q0A"/>
                     </connections>
                 </customObject>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
